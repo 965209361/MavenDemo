@@ -1,6 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ page isELIgnored="false" %>
 <%
     String path = request.getContextPath();
@@ -115,15 +116,26 @@
             <%--<th>comment</th>--%>
             <%--<th>commentCount</th>--%>
         </tr>
-        <tr th:each="user,start:${rows}">
+        <c:forEach items="${rows}" var="user">
+            <tr>
+                <td> ${user.id}</td>
+                <td> ${user.listUrl}</td>
+                <td> ${user.title}</td>
+                <td> ${user.content}</td>
+                <td><fmt:formatDate value="${user.fbsj}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+                <td> ${user.comment}</td>
+                <td> ${user.commentCount}</td>
+            </tr>
+        </c:forEach>
+        <%--<tr th:each="user,start:${rows}">
             <td th:text="${user.id}"></td>
             <td th:text="${user.listUrl}"></td>
             <td th:text="${user.title}"></td>
-            <%--<td th:text="${domain.content}"></td>--%>
-            <%--<td th:text="${domain.fbsj}"></td>--%>
-            <%--<td th:text="${domain.comment}"></td>--%>
-            <%--<td th:text="${domain.commentCount}"></td>--%>
-        </tr>
+            &lt;%&ndash;<td th:text="${domain.content}"></td>&ndash;%&gt;
+            &lt;%&ndash;<td th:text="${domain.fbsj}"></td>&ndash;%&gt;
+            &lt;%&ndash;<td th:text="${domain.comment}"></td>&ndash;%&gt;
+            &lt;%&ndash;<td th:text="${domain.commentCount}"></td>&ndash;%&gt;
+        </tr>--%>
     </table>
 </div>
 
